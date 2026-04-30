@@ -1,584 +1,586 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jobi — Track Your Dream Job!</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Jobi — Track Your Dream Job!</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --cream:   #F0EDD8;
-      --green1:  #C5D9A0;
-      --green2:  #8FAF72;
-      --green3:  #6B8C52;
-      --green4:  #4E6B3A;
-      --text:    #2D3E1F;
-      --muted:   #6B8C52;
-      --surface: #FAFAF3;
-      --white:   #FFFFFF;
-      --border:  #D8E8C0;
-    }
+:root {
+--cream:   #F0EDD8;
+--green1:  #C5D9A0;
+--green2:  #8FAF72;
+--green3:  #6B8C52;
+--green4:  #4E6B3A;
+--text:    #2D3E1F;
+--muted:   #6B8C52;
+--surface: #FAFAF3;
+--white:   #FFFFFF;
+--border:  #D8E8C0;
+}
 
-    body {
-      font-family: 'Nunito Sans', sans-serif;
-      background: var(--cream);
-      color: var(--text);
-      min-height: 100vh;
-      font-size: 14px;
-    }
+body {
+font-family: 'Nunito Sans', sans-serif;
+background: var(--cream);
+color: var(--text);
+min-height: 100vh;
+font-size: 14px;
+}
 
-    /* ── NAV ── */
-    nav {
-      background: var(--green4);
-      padding: 0 28px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+/* ── NAV ── */
+nav {
+background: var(--green4);
+padding: 0 28px;
+height: 60px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+position: sticky;
+top: 0;
+z-index: 100;
+}
 
-    .logo-wrap { display: flex; align-items: center; gap: 10px; }
-    .logo-icon {
-      width: 34px; height: 34px;
-      background: var(--green1);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
-    }
-    .logo {
-      font-family: 'Nunito', sans-serif;
-      font-size: 22px;
-      font-weight: 900;
-      color: var(--cream);
-      letter-spacing: -0.5px;
-    }
-    .logo-tag {
-      font-size: 11px;
-      color: var(--green1);
-      font-weight: 400;
-      margin-left: 2px;
-    }
+.logo-wrap { display: flex; align-items: center; gap: 10px; }
+.logo-icon {
+width: 34px; height: 34px;
+background: var(--green1);
+border-radius: 10px;
+display: flex; align-items: center; justify-content: center;
+font-size: 18px;
+}
+.logo {
+font-family: 'Nunito', sans-serif;
+font-size: 22px;
+font-weight: 900;
+color: var(--cream);
+letter-spacing: -0.5px;
+}
+.logo-tag {
+font-size: 11px;
+color: var(--green1);
+font-weight: 400;
+margin-left: 2px;
+}
 
-    .nav-right { display: flex; gap: 10px; align-items: center; }
-    .search-wrap { position: relative; }
-    .search-wrap input {
-      padding: 8px 12px 8px 34px;
-      border-radius: 20px;
-      border: none;
-      background: rgba(255,255,255,0.12);
-      color: var(--cream);
-      font-family: 'Nunito Sans', sans-serif;
-      font-size: 13px;
-      outline: none;
-      width: 200px;
-      transition: background 0.2s;
-    }
-    .search-wrap input::placeholder { color: rgba(240,237,216,0.55); }
-    .search-wrap input:focus { background: rgba(255,255,255,0.2); }
-    .search-icon {
-      position: absolute; left: 12px; top: 50%;
-      transform: translateY(-50%);
-      color: var(--green1); font-size: 14px; pointer-events: none;
-    }
+.nav-right { display: flex; gap: 10px; align-items: center; }
+.search-wrap { position: relative; }
+.search-wrap input {
+padding: 8px 12px 8px 34px;
+border-radius: 20px;
+border: none;
+background: rgba(255,255,255,0.12);
+color: var(--cream);
+font-family: 'Nunito Sans', sans-serif;
+font-size: 13px;
+outline: none;
+width: 200px;
+transition: background 0.2s;
+}
+.search-wrap input::placeholder { color: rgba(240,237,216,0.55); }
+.search-wrap input:focus { background: rgba(255,255,255,0.2); }
+.search-icon {
+position: absolute; left: 12px; top: 50%;
+transform: translateY(-50%);
+color: var(--green1); font-size: 14px; pointer-events: none;
+}
 
-    /* ── HERO BANNER ── */
-    .hero {
-      background: linear-gradient(135deg, var(--green3) 0%, var(--green4) 100%);
-      padding: 28px 28px 0;
-      overflow: hidden;
-    }
-    .hero-inner { max-width: 1000px; margin: 0 auto; display: flex; align-items: flex-end; justify-content: space-between; }
-    .hero-text h1 {
-      font-family: 'Nunito', sans-serif;
-      font-size: 26px; font-weight: 900;
-      color: var(--cream); line-height: 1.2; margin-bottom: 6px;
-    }
-    .hero-text p { font-size: 13px; color: var(--green1); margin-bottom: 20px; }
-    .hero-mascot { font-size: 72px; line-height: 1; margin-bottom: -4px; }
+/* ── HERO BANNER ── */
+.hero {
+background: linear-gradient(135deg, var(--green3) 0%, var(--green4) 100%);
+padding: 28px 28px 0;
+overflow: hidden;
+}
+.hero-inner { max-width: 1000px; margin: 0 auto; display: flex; align-items: flex-end; justify-content: space-between; }
+.hero-text h1 {
+font-family: 'Nunito', sans-serif;
+font-size: 26px; font-weight: 900;
+color: var(--cream); line-height: 1.2; margin-bottom: 6px;
+}
+.hero-text p { font-size: 13px; color: var(--green1); margin-bottom: 20px; }
+.hero-mascot { font-size: 72px; line-height: 1; margin-bottom: -4px; }
 
-    /* ── MAIN ── */
-    main { max-width: 1000px; margin: 0 auto; padding: 24px; }
+/* ── MAIN ── */
+main { max-width: 1000px; margin: 0 auto; padding: 24px; }
 
-    /* ── STATS ── */
-    .stats-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 12px; margin-bottom: 20px;
-    }
-    .stat-card {
-      background: var(--white); border: 1.5px solid var(--border);
-      border-radius: 16px; padding: 16px 18px;
-      position: relative; overflow: hidden;
-      transition: transform 0.15s;
-    }
-    .stat-card:hover { transform: translateY(-2px); }
-    .stat-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0;
-      height: 4px; border-radius: 16px 16px 0 0;
-    }
-    .stat-card:nth-child(1)::before { background: var(--green2); }
-    .stat-card:nth-child(2)::before { background: #F0A500; }
-    .stat-card:nth-child(3)::before { background: var(--green3); }
-    .stat-card:nth-child(4)::before { background: #D97B6C; }
-    .stat-emoji { font-size: 22px; margin-bottom: 8px; display: block; }
-    .stat-label { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-    .stat-value { font-family: 'Nunito', sans-serif; font-size: 30px; font-weight: 900; color: var(--text); line-height: 1; }
-    .stat-sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+/* ── STATS ── */
+.stats-grid {
+display: grid; grid-template-columns: repeat(4, 1fr);
+gap: 12px; margin-bottom: 20px;
+}
+.stat-card {
+background: var(--white); border: 1.5px solid var(--border);
+border-radius: 16px; padding: 16px 18px;
+position: relative; overflow: hidden;
+transition: transform 0.15s;
+}
+.stat-card:hover { transform: translateY(-2px); }
+.stat-card::before {
+content: ''; position: absolute; top: 0; left: 0; right: 0;
+height: 4px; border-radius: 16px 16px 0 0;
+}
+.stat-card:nth-child(1)::before { background: var(--green2); }
+.stat-card:nth-child(2)::before { background: #F0A500; }
+.stat-card:nth-child(3)::before { background: var(--green3); }
+.stat-card:nth-child(4)::before { background: #D97B6C; }
+.stat-emoji { font-size: 22px; margin-bottom: 8px; display: block; }
+.stat-label { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.stat-value { font-family: 'Nunito', sans-serif; font-size: 30px; font-weight: 900; color: var(--text); line-height: 1; }
+.stat-sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
 
-    /* ── PROGRESS ── */
-    .section-label {
-      font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700;
-      color: var(--green4); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px;
-    }
-    .progress-bar {
-      display: flex; height: 10px; border-radius: 10px;
-      overflow: hidden; background: var(--border); margin-bottom: 10px;
-    }
-    .progress-bar div { height: 100%; transition: width 0.5s ease; }
-    .legend { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 24px; }
-    .legend-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text); font-weight: 600; }
-    .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+/* ── PROGRESS ── */
+.section-label {
+font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700;
+color: var(--green4); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px;
+}
+.progress-bar {
+display: flex; height: 10px; border-radius: 10px;
+overflow: hidden; background: var(--border); margin-bottom: 10px;
+}
+.progress-bar div { height: 100%; transition: width 0.5s ease; }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 24px; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text); font-weight: 600; }
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; }
 
-    /* ── REMINDER ── */
-    .reminder {
-      background: #FFF8E7; border: 1.5px solid #F5CC6A;
-      border-radius: 12px; padding: 12px 16px;
-      display: flex; align-items: center; gap: 10px;
-      margin-bottom: 18px; font-size: 13px; color: #7A5A00; font-weight: 600;
-    }
+/* ── REMINDER ── */
+.reminder {
+background: #FFF8E7; border: 1.5px solid #F5CC6A;
+border-radius: 12px; padding: 12px 16px;
+display: flex; align-items: center; gap: 10px;
+margin-bottom: 18px; font-size: 13px; color: #7A5A00; font-weight: 600;
+}
 
-    /* ── TOOLBAR ── */
-    .toolbar {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 14px; gap: 10px; flex-wrap: wrap;
-    }
-    .filters { display: flex; gap: 6px; flex-wrap: wrap; }
-    .chip {
-      border: 1.5px solid var(--border); border-radius: 20px;
-      padding: 5px 14px; font-size: 12px; font-weight: 700;
-      color: var(--green4); background: var(--white);
-      cursor: pointer; transition: all 0.15s;
-      font-family: 'Nunito', sans-serif;
-    }
-    .chip:hover { border-color: var(--green3); background: #EEF6E4; }
-    .chip.active { background: var(--green4); color: var(--cream); border-color: var(--green4); }
+/* ── TOOLBAR ── */
+.toolbar {
+display: flex; align-items: center; justify-content: space-between;
+margin-bottom: 14px; gap: 10px; flex-wrap: wrap;
+}
+.filters { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip {
+border: 1.5px solid var(--border); border-radius: 20px;
+padding: 5px 14px; font-size: 12px; font-weight: 700;
+color: var(--green4); background: var(--white);
+cursor: pointer; transition: all 0.15s;
+font-family: 'Nunito', sans-serif;
+}
+.chip:hover { border-color: var(--green3); background: #EEF6E4; }
+.chip.active { background: var(--green4); color: var(--cream); border-color: var(--green4); }
 
-    .btn {
-      font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700;
-      padding: 8px 18px; border-radius: 12px; border: 1.5px solid var(--border);
-      background: var(--white); color: var(--text); cursor: pointer;
-      transition: all 0.15s; display: flex; align-items: center; gap: 6px;
-    }
-    .btn:hover { border-color: var(--green3); background: #EEF6E4; }
-    .btn-primary { background: var(--green4); color: var(--cream); border-color: var(--green4); }
-    .btn-primary:hover { background: var(--green3); border-color: var(--green3); }
+.btn {
+font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700;
+padding: 8px 18px; border-radius: 12px; border: 1.5px solid var(--border);
+background: var(--white); color: var(--text); cursor: pointer;
+transition: all 0.15s; display: flex; align-items: center; gap: 6px;
+}
+.btn:hover { border-color: var(--green3); background: #EEF6E4; }
+.btn-primary { background: var(--green4); color: var(--cream); border-color: var(--green4); }
+.btn-primary:hover { background: var(--green3); border-color: var(--green3); }
 
-    /* ── TABLE ── */
-    .table-wrap {
-      background: var(--white); border: 1.5px solid var(--border);
-      border-radius: 16px; overflow: hidden;
-    }
-    table { width: 100%; border-collapse: collapse; }
-    thead tr { border-bottom: 1.5px solid var(--border); background: #F5FAF0; }
-    th {
-      font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 800;
-      color: var(--green4); text-transform: uppercase; letter-spacing: 0.6px;
-      padding: 12px 14px; text-align: left;
-    }
-    td {
-      padding: 13px 14px; border-bottom: 1px solid var(--border);
-      vertical-align: middle; font-size: 13px;
-    }
-    tbody tr:last-child td { border-bottom: none; }
-    tbody tr { transition: background 0.1s; }
-    tbody tr:hover { background: #F8FCF3; }
+/* ── TABLE ── */
+.table-wrap {
+background: var(--white); border: 1.5px solid var(--border);
+border-radius: 16px; overflow: hidden;
+}
+table { width: 100%; border-collapse: collapse; }
+thead tr { border-bottom: 1.5px solid var(--border); background: #F5FAF0; }
+th {
+font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 800;
+color: var(--green4); text-transform: uppercase; letter-spacing: 0.6px;
+padding: 12px 14px; text-align: left;
+}
+td {
+padding: 13px 14px; border-bottom: 1px solid var(--border);
+vertical-align: middle; font-size: 13px;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr { transition: background 0.1s; }
+tbody tr:hover { background: #F8FCF3; }
 
-    .empty-state { text-align: center; padding: 60px 20px; }
-    .empty-state .empty-emoji { font-size: 52px; margin-bottom: 12px; }
-    .empty-state p { font-size: 14px; font-weight: 700; color: var(--green3); margin-bottom: 4px; }
-    .empty-state span { font-size: 12px; color: var(--muted); }
+.empty-state { text-align: center; padding: 60px 20px; }
+.empty-state .empty-emoji { font-size: 52px; margin-bottom: 12px; }
+.empty-state p { font-size: 14px; font-weight: 700; color: var(--green3); margin-bottom: 4px; }
+.empty-state span { font-size: 12px; color: var(--muted); }
 
-    .platform { display: flex; align-items: center; gap: 7px; font-weight: 600; }
-    .platform-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.platform { display: flex; align-items: center; gap: 7px; font-weight: 600; }
+.platform-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
-    .status {
-      display: inline-flex; align-items: center; gap: 5px;
-      border-radius: 20px; padding: 4px 11px;
-      font-size: 11px; font-weight: 700;
-      font-family: 'Nunito', sans-serif; white-space: nowrap;
-    }
-    .status-dot { width: 6px; height: 6px; border-radius: 50%; }
-    .s-applied   { background: #E8F4FF; color: #1565C0; }
-    .s-interview { background: #FFF8E7; color: #E65100; }
+.status {
+display: inline-flex; align-items: center; gap: 5px;
+border-radius: 20px; padding: 4px 11px;
+font-size: 11px; font-weight: 700;
+font-family: 'Nunito', sans-serif; white-space: nowrap;
+}
+.status-dot { width: 6px; height: 6px; border-radius: 50%; }
+.s-applied   { background: #E8F4FF; color: #1565C0; }
+.s-interview { background: #FFF8E7; color: #E65100; }
     .s-psikotest { background: #FFF8E7; color: #E65100; }
-    .s-offering  { background: #EEF6E4; color: var(--green4); }
-    .s-ghosted   { background: #F3F4F6; color: #4B5563; }
-    .s-rejected  { background: #FFF0EE; color: #C62828; }
+.s-offering  { background: #EEF6E4; color: var(--green4); }
+.s-ghosted   { background: #F3F4F6; color: #4B5563; }
+.s-rejected  { background: #FFF0EE; color: #C62828; }
 
-    .action-btn {
-      background: none; border: none; cursor: pointer;
-      color: var(--muted); font-size: 15px;
-      padding: 3px 6px; border-radius: 6px; transition: all 0.15s;
-    }
-    .action-btn:hover { background: #EEF6E4; color: var(--green4); }
-    .action-btn.del:hover { background: #FFF0EE; color: #C62828; }
+.action-btn {
+background: none; border: none; cursor: pointer;
+color: var(--muted); font-size: 15px;
+padding: 3px 6px; border-radius: 6px; transition: all 0.15s;
+}
+.action-btn:hover { background: #EEF6E4; color: var(--green4); }
+.action-btn.del:hover { background: #FFF0EE; color: #C62828; }
 
-    .bottom-bar {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-top: 14px; font-size: 12px; color: var(--muted); font-weight: 600;
-    }
+.bottom-bar {
+display: flex; justify-content: space-between; align-items: center;
+margin-top: 14px; font-size: 12px; color: var(--muted); font-weight: 600;
+}
 
-    /* ── MODAL ── */
-    .modal-overlay {
-      display: none; position: fixed; inset: 0;
-      background: rgba(46,62,31,0.4);
-      z-index: 200; align-items: center; justify-content: center; padding: 20px;
-    }
-    .modal-overlay.open { display: flex; }
-    .modal {
-      background: var(--white); border-radius: 20px;
-      width: 100%; max-width: 500px; padding: 28px;
-      border: 1.5px solid var(--border);
-      box-shadow: 0 20px 60px rgba(78,107,58,0.2);
-    }
-    .modal-header { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
-    .modal-title { font-family: 'Nunito', sans-serif; font-size: 22px; font-weight: 900; color: var(--text); }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .form-group { display: flex; flex-direction: column; gap: 5px; }
-    .form-group.full { grid-column: 1 / -1; }
-    label {
-      font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 800;
-      color: var(--green4); text-transform: uppercase; letter-spacing: 0.5px;
-    }
-    input, select, textarea {
-      font-family: 'Nunito Sans', sans-serif; font-size: 13px;
-      border: 1.5px solid var(--border); border-radius: 10px;
-      padding: 9px 12px; background: var(--cream); color: var(--text);
-      outline: none; transition: border-color 0.15s;
-    }
-    input:focus, select:focus, textarea:focus { border-color: var(--green3); background: var(--white); }
-    textarea { resize: vertical; min-height: 70px; }
-    .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 22px; }
+/* ── MODAL ── */
+.modal-overlay {
+display: none; position: fixed; inset: 0;
+background: rgba(46,62,31,0.4);
+z-index: 200; align-items: center; justify-content: center; padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+background: var(--white); border-radius: 20px;
+width: 100%; max-width: 500px; padding: 28px;
+border: 1.5px solid var(--border);
+box-shadow: 0 20px 60px rgba(78,107,58,0.2);
+}
+.modal-header { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
+.modal-title { font-family: 'Nunito', sans-serif; font-size: 22px; font-weight: 900; color: var(--text); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-group { display: flex; flex-direction: column; gap: 5px; }
+.form-group.full { grid-column: 1 / -1; }
+label {
+font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 800;
+color: var(--green4); text-transform: uppercase; letter-spacing: 0.5px;
+}
+input, select, textarea {
+font-family: 'Nunito Sans', sans-serif; font-size: 13px;
+border: 1.5px solid var(--border); border-radius: 10px;
+padding: 9px 12px; background: var(--cream); color: var(--text);
+outline: none; transition: border-color 0.15s;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--green3); background: var(--white); }
+textarea { resize: vertical; min-height: 70px; }
+.modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 22px; }
 
-    footer {
-      text-align: center; padding: 20px;
-      font-size: 12px; color: var(--muted); font-weight: 600;
-    }
-    footer span { color: var(--green3); }
+footer {
+text-align: center; padding: 20px;
+font-size: 12px; color: var(--muted); font-weight: 600;
+}
+footer span { color: var(--green3); }
 
-    @media (max-width: 680px) {
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      th:nth-child(4), td:nth-child(4),
-      th:nth-child(6), td:nth-child(6) { display: none; }
-      .hero-mascot { font-size: 52px; }
-      .search-wrap input { width: 130px; }
-    }
-  </style>
+@media (max-width: 680px) {
+.stats-grid { grid-template-columns: repeat(2, 1fr); }
+th:nth-child(4), td:nth-child(4),
+th:nth-child(6), td:nth-child(6) { display: none; }
+.hero-mascot { font-size: 52px; }
+.search-wrap input { width: 130px; }
+}
+</style>
 </head>
 <body>
 
 <nav>
-  <div class="logo-wrap">
-    <div class="logo-icon">🌱</div>
-    <div>
-      <span class="logo">Jobi</span>
-      <span class="logo-tag">track your dream job!</span>
-    </div>
-  </div>
-  <div class="nav-right">
-    <div class="search-wrap">
-      <span class="search-icon">⌕</span>
-      <input type="text" id="searchInput" placeholder="Cari posisi atau perusahaan..." oninput="render()"/>
-    </div>
-    <button class="btn btn-primary" onclick="openModal()">＋ Tambah</button>
-  </div>
+<div class="logo-wrap">
+<div class="logo-icon">🌱</div>
+<div>
+<span class="logo">Jobi</span>
+<span class="logo-tag">track your dream job!</span>
+</div>
+</div>
+<div class="nav-right">
+<div class="search-wrap">
+<span class="search-icon">⌕</span>
+<input type="text" id="searchInput" placeholder="Cari posisi atau perusahaan..." oninput="render()"/>
+</div>
+<button class="btn btn-primary" onclick="openModal()">＋ Tambah</button>
+</div>
 </nav>
 
 <div class="hero">
-  <div class="hero-inner">
-    <div class="hero-text">
-      <h1> Hello, Selamat Datang di Jobi!✨ </h1>
-      <p> Catat dan pantau semua lamaranmu di satu tempat.</p>
-    </div>
-    <div class="hero-mascot">🐸</div>
-  </div>
+<div class="hero-inner">
+<div class="hero-text">
+<h1> Hello, Selamat Datang di Jobi!✨ </h1>
+<p> Catat dan pantau semua lamaranmu di satu tempat.</p>
+</div>
+<div class="hero-mascot">🐸</div>
+</div>
 </div>
 
 <main>
-  <div class="stats-grid" id="statsGrid"></div>
+<div class="stats-grid" id="statsGrid"></div>
 
-  <div class="section-label">Progress lamaranmu</div>
-  <div class="progress-bar" id="progressBar"></div>
-  <div class="legend" id="legend"></div>
+<div class="section-label">Progress lamaranmu</div>
+<div class="progress-bar" id="progressBar"></div>
+<div class="legend" id="legend"></div>
 
-  <div class="reminder" id="reminderBox" style="display:none">
-    <span>⏰</span><span id="reminderText"></span>
-  </div>
+<div class="reminder" id="reminderBox" style="display:none">
+<span>⏰</span><span id="reminderText"></span>
+</div>
 
-  <div class="toolbar">
-    <div class="filters" id="filterChips"></div>
-    <button class="btn" onclick="exportCSV()">⬇ Export CSV</button>
-  </div>
+<div class="toolbar">
+<div class="filters" id="filterChips"></div>
+<button class="btn" onclick="exportCSV()">⬇ Export CSV</button>
+</div>
 
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Posisi</th><th>Platform</th><th>Perusahaan</th>
-          <th>Tanggal</th><th>Status</th><th>Lokasi</th>
-          <th>Catatan</th><th></th>
-        </tr>
-      </thead>
-      <tbody id="tableBody"></tbody>
-    </table>
-  </div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Posisi</th><th>Platform</th><th>Perusahaan</th>
+<th>Tanggal</th><th>Status</th><th>Lokasi</th>
+<th>Catatan</th><th></th>
+</tr>
+</thead>
+<tbody id="tableBody"></tbody>
+</table>
+</div>
 
-  <div class="bottom-bar">
-    <span id="tableCount"></span>
-    <span>✨ Data tersimpan otomatis di browser kamu</span>
-  </div>
+<div class="bottom-bar">
+<span id="tableCount"></span>
+<span>✨ Data tersimpan otomatis di browser kamu</span>
+</div>
 </main>
 
 <footer>Made with 💚 by <span>Jobi</span> — Wishing you tons of luck!</footer>
 
 <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
-  <div class="modal">
-    <div class="modal-header">
-      <span style="font-size:26px">📝</span>
-      <div class="modal-title" id="modalTitle">Tambah Lamaran</div>
-    </div>
-    <div class="form-grid">
-      <div class="form-group full">
-        <label>Posisi yang dilamar</label>
-        <input type="text" id="f-position" placeholder="cth: Product Designer"/>
-      </div>
-      <div class="form-group">
-        <label>Platform</label>
-        <select id="f-platform">
-          <option value="">Pilih platform</option>
-          <option>LinkedIn</option><option>Jobstreet</option><option>Glints</option>
-          <option>Kalibrr</option><option>Indeed</option><option>Google Form</option><option>Email</option><option>Social Media</option>
-          <option>Website Perusahaan</option><option>Referral</option><option>Lainnya</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Bidang</label>
-        <select id="f-field">
-          <option value="">Pilih bidang</option>
-          <option>Tech / IT</option><option>Design</option><option>Marketing</option>
-          <option>Finance</option><option>HR</option><option>Sales</option>
-          <option>Operasional</option><option>Lainnya</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Perusahaan</label>
-        <input type="text" id="f-company" placeholder="cth: GoTo Group"/>
-      </div>
-      <div class="form-group">
-        <label>Lokasi</label>
-        <input type="text" id="f-location" placeholder="cth: Jakarta / Remote"/>
-      </div>
-      <div class="form-group">
-        <label>Tanggal Apply</label>
-        <input type="date" id="f-date"/>
-      </div>
-      <div class="form-group">
-        <label>Status</label>
-        <select id="f-status">
-          <option value="Applied">Applied</option>
-          <option value="Interview">Interview</option>
+<div class="modal">
+<div class="modal-header">
+<span style="font-size:26px">📝</span>
+<div class="modal-title" id="modalTitle">Tambah Lamaran</div>
+</div>
+<div class="form-grid">
+<div class="form-group full">
+<label>Posisi yang dilamar</label>
+<input type="text" id="f-position" placeholder="cth: Product Designer"/>
+</div>
+<div class="form-group">
+<label>Platform</label>
+<select id="f-platform">
+<option value="">Pilih platform</option>
+<option>LinkedIn</option><option>Jobstreet</option><option>Glints</option>
+<option>Kalibrr</option><option>Indeed</option>
+<option>Website Perusahaan</option><option>Referral</option><option>Lainnya</option>
+</select>
+</div>
+<div class="form-group">
+<label>Bidang</label>
+<select id="f-field">
+<option value="">Pilih bidang</option>
+<option>Tech / IT</option><option>Design</option><option>Marketing</option>
+<option>Finance</option><option>HR</option><option>Sales</option>
+<option>Operasional</option><option>Lainnya</option>
+</select>
+</div>
+<div class="form-group">
+<label>Perusahaan</label>
+<input type="text" id="f-company" placeholder="cth: GoTo Group"/>
+</div>
+<div class="form-group">
+<label>Lokasi</label>
+<input type="text" id="f-location" placeholder="cth: Jakarta / Remote"/>
+</div>
+<div class="form-group">
+<label>Tanggal Apply</label>
+<input type="date" id="f-date"/>
+</div>
+<div class="form-group">
+<label>Status</label>
+<select id="f-status">
+<option value="Applied">Applied</option>
+<option value="Interview">Interview</option>
           <option value="Psikotest">Psikotest</option>
-          <option value="Offering">Offering Letter</option>
-          <option value="Ghosted">Ghosted</option>
-          <option value="Rejected">Rejected</option>
-        </select>
-      </div>
-      <div class="form-group full">
-        <label>Catatan</label>
-        <textarea id="f-notes" placeholder="cth: Interview HR dijadwalkan 20 April..."></textarea>
-      </div>
-    </div>
-    <div class="modal-actions">
-      <button class="btn" onclick="closeModal()">Batal</button>
-      <button class="btn btn-primary" onclick="saveEntry()">💾 Simpan</button>
-    </div>
-  </div>
+<option value="Offering">Offering Letter</option>
+<option value="Ghosted">Ghosted</option>
+<option value="Rejected">Rejected</option>
+</select>
+</div>
+<div class="form-group full">
+<label>Catatan</label>
+<textarea id="f-notes" placeholder="cth: Interview HR dijadwalkan 20 April..."></textarea>
+</div>
+</div>
+<div class="modal-actions">
+<button class="btn" onclick="closeModal()">Batal</button>
+<button class="btn btn-primary" onclick="saveEntry()">💾 Simpan</button>
+</div>
+</div>
 </div>
 
 <script>
-  let entries = JSON.parse(localStorage.getItem('jobi-entries') || '[]');
-  let editingId = null;
-  let activeFilter = 'Semua';
+let entries = JSON.parse(localStorage.getItem('jobi-entries') || '[]');
+let editingId = null;
+let activeFilter = 'Semua';
 
-  const PLATFORM_COLORS = {
-    'LinkedIn':'#0A66C2','Jobstreet':'#E31837','Glints':'#E8192C',
-    'Kalibrr':'#6C5CE7','Indeed':'#003A9B','Google Form':'#8FAF72','Email':'#A3B18A','Social Media':'#6C8EA4',Website Perusahaan':'#4E6B3A',
-    'Referral':'#B45309', 'Lainnya':'#6B7280',
-  };
+const PLATFORM_COLORS = {
+'LinkedIn':'#0A66C2','Jobstreet':'#E31837','Glints':'#E8192C',
+'Kalibrr':'#6C5CE7','Indeed':'#003A9B','Website Perusahaan':'#4E6B3A',
+'Referral':'#B45309','Lainnya':'#6B7280',
+};
 
-  const STATUS_CONFIG = {
-    'Applied':   { cls:'s-applied',   label:'Applied',         color:'#1565C0', bar:'#5BA4F5' },
-    'Interview': { cls:'s-interview', label:'Interview',       color:'#E65100', bar:'#F5A623' },
+const STATUS_CONFIG = {
+'Applied':   { cls:'s-applied',   label:'Applied',         color:'#1565C0', bar:'#5BA4F5' },
+'Interview': { cls:'s-interview', label:'Interview',       color:'#E65100', bar:'#F5A623' },
     'Psikotest': { cls:'s-psikotest', label:'psikotest',       color:'#E65100', bar:'#F5A623' },
-    'Offering':  { cls:'s-offering',  label:'Offering Letter', color:'#2D6A4F', bar:'#6B8C52' },
-    'Ghosted':   { cls:'s-ghosted',   label:'Ghosted',         color:'#4B5563', bar:'#B4B2A9' },
-    'Rejected':  { cls:'s-rejected',  label:'Rejected',        color:'#C62828', bar:'#E07B6A' },
-  };
+'Offering':  { cls:'s-offering',  label:'Offering Letter', color:'#2D6A4F', bar:'#6B8C52' },
+'Ghosted':   { cls:'s-ghosted',   label:'Ghosted',         color:'#4B5563', bar:'#B4B2A9' },
+'Rejected':  { cls:'s-rejected',  label:'Rejected',        color:'#C62828', bar:'#E07B6A' },
+};
 
-  function save() { localStorage.setItem('jobi-entries', JSON.stringify(entries)); }
-  function render() { renderStats(); renderProgressBar(); renderFilters(); renderTable(); renderReminder(); }
+function save() { localStorage.setItem('jobi-entries', JSON.stringify(entries)); }
+function render() { renderStats(); renderProgressBar(); renderFilters(); renderTable(); renderReminder(); }
 
-  function renderStats() {
-    const total=entries.length, interview=entries.filter(e=>e.status==='Interview').length,
+function renderStats() {
+const total=entries.length, interview=entries.filter(e=>e.status==='Interview').length,
+          offering=entries.filter(e=>e.status==='Offering').length,
           offering=entries.filter(e=>e.status==='Offering').length, psikotest=entries.filter(e=>e.status==='Psikotest').length
-          ghosted=entries.filter(e=>e.status==='Ghosted').length,
-          rate=total?Math.round(interview/total*100):0;
-    document.getElementById('statsGrid').innerHTML = [
-      {emoji:'📋',label:'Total Lamaran',value:total,sub:'semua platform'},
-      {emoji:'🎯',label:'Interview',value:interview,sub:`${rate}% response rate`},
+ghosted=entries.filter(e=>e.status==='Ghosted').length,
+rate=total?Math.round(interview/total*100):0;
+document.getElementById('statsGrid').innerHTML = [
+{emoji:'📋',label:'Total Lamaran',value:total,sub:'semua platform'},
+{emoji:'🎯',label:'Interview',value:interview,sub:`${rate}% response rate`},
       {emoji:'📝',label:'Psikotest',value:psikotest,sub:`${rate}% response rate`},
-      {emoji:'🎉',label:'Offering',value:offering,sub:`dari ${total} lamaran`},
-      {emoji:'👻',label:'Ghosted',value:ghosted,sub:`${total?Math.round(ghosted/total*100):0}% dari total`},
-    ].map(d=>`<div class="stat-card">
-      <span class="stat-emoji">${d.emoji}</span>
-      <div class="stat-label">${d.label}</div>
-      <div class="stat-value">${d.value}</div>
-      <div class="stat-sub">${d.sub}</div>
-    </div>`).join('');
-  }
+{emoji:'🎉',label:'Offering',value:offering,sub:`dari ${total} lamaran`},
+{emoji:'👻',label:'Ghosted',value:ghosted,sub:`${total?Math.round(ghosted/total*100):0}% dari total`},
+].map(d=>`<div class="stat-card">
+     <span class="stat-emoji">${d.emoji}</span>
+     <div class="stat-label">${d.label}</div>
+     <div class="stat-value">${d.value}</div>
+     <div class="stat-sub">${d.sub}</div>
+   </div>`).join('');
+}
 
-  function renderProgressBar() {
-    const total=entries.length||1, counts={};
-    Object.keys(STATUS_CONFIG).forEach(s=>counts[s]=0);
-    entries.forEach(e=>counts[e.status]=(counts[e.status]||0)+1);
-    document.getElementById('progressBar').innerHTML=Object.keys(STATUS_CONFIG).map(s=>
-      `<div style="width:${counts[s]/total*100}%;background:${STATUS_CONFIG[s].bar}"></div>`).join('');
-    document.getElementById('legend').innerHTML=Object.keys(STATUS_CONFIG).map(s=>
-      `<div class="legend-item"><div class="legend-dot" style="background:${STATUS_CONFIG[s].bar}"></div>${STATUS_CONFIG[s].label} (${counts[s]})</div>`).join('');
-  }
+function renderProgressBar() {
+const total=entries.length||1, counts={};
+Object.keys(STATUS_CONFIG).forEach(s=>counts[s]=0);
+entries.forEach(e=>counts[e.status]=(counts[e.status]||0)+1);
+document.getElementById('progressBar').innerHTML=Object.keys(STATUS_CONFIG).map(s=>
+`<div style="width:${counts[s]/total*100}%;background:${STATUS_CONFIG[s].bar}"></div>`).join('');
+document.getElementById('legend').innerHTML=Object.keys(STATUS_CONFIG).map(s=>
+`<div class="legend-item"><div class="legend-dot" style="background:${STATUS_CONFIG[s].bar}"></div>${STATUS_CONFIG[s].label} (${counts[s]})</div>`).join('');
+}
 
-  function renderFilters() {
-    const platforms=['Semua',...new Set(entries.map(e=>e.platform).filter(Boolean))];
-    document.getElementById('filterChips').innerHTML=platforms.map(p=>
-      `<button class="chip ${activeFilter===p?'active':''}" onclick="setFilter('${p}')">${p}</button>`).join('');
-  }
+function renderFilters() {
+const platforms=['Semua',...new Set(entries.map(e=>e.platform).filter(Boolean))];
+document.getElementById('filterChips').innerHTML=platforms.map(p=>
+`<button class="chip ${activeFilter===p?'active':''}" onclick="setFilter('${p}')">${p}</button>`).join('');
+}
 
-  function setFilter(p){activeFilter=p;render();}
+function setFilter(p){activeFilter=p;render();}
 
-  function renderReminder() {
-    const now=Date.now();
-    const stale=entries.filter(e=>{
-      if(!e.date||['Ghosted','Offering','Rejected'].includes(e.status))return false;
-      return Math.floor((now-new Date(e.date).getTime())/86400000)>=14;
-    });
-    const box=document.getElementById('reminderBox');
-    if(stale.length){
-      document.getElementById('reminderText').textContent=
+function renderReminder() {
+const now=Date.now();
+const stale=entries.filter(e=>{
+if(!e.date||['Ghosted','Offering','Rejected'].includes(e.status))return false;
+return Math.floor((now-new Date(e.date).getTime())/86400000)>=14;
+});
+const box=document.getElementById('reminderBox');
+if(stale.length){
+document.getElementById('reminderText').textContent=
+        `${stale.length} lamaran belum ada update lebih dari 14 hari — coba follow up atau tandai sebagai Ghosted!`;
         `${stale.length} lamaran belum ada update lebih dari 14 hari — yuk follow up atau tandai sebagai Ghosted 👻`;
-      box.style.display='flex';
-    } else { box.style.display='none'; }
-  }
+box.style.display='flex';
+} else { box.style.display='none'; }
+}
 
-  function renderTable() {
-    const q=document.getElementById('searchInput').value.toLowerCase();
-    let filtered=entries.filter(e=>{
-      const mf=activeFilter==='Semua'||e.platform===activeFilter;
-      const ms=!q||(e.position||'').toLowerCase().includes(q)||(e.company||'').toLowerCase().includes(q);
-      return mf&&ms;
-    }).sort((a,b)=>new Date(b.date||0)-new Date(a.date||0));
-    document.getElementById('tableCount').textContent=`${filtered.length} dari ${entries.length} lamaran`;
-    const body=document.getElementById('tableBody');
-    if(!filtered.length){
-      body.innerHTML=`<tr><td colspan="8"><div class="empty-state">
-        <div class="empty-emoji">${entries.length?'🔍':'🌱'}</div>
-        <p>${entries.length?'Tidak ada hasil yang cocok.':'Belum ada lamaran nih!'}</p>
-        <span>${entries.length?'Coba ubah filter atau kata kunci.':'Klik "+ Tambah" untuk mulai track lamaranmu!'}</span>
-      </div></td></tr>`;
-      return;
-    }
-    body.innerHTML=filtered.map(e=>{
-      const sc=STATUS_CONFIG[e.status]||STATUS_CONFIG['Applied'];
-      const pc=PLATFORM_COLORS[e.platform]||'#6B7280';
-      const date=e.date?new Date(e.date).toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'}):'—';
-      return `<tr>
-        <td><strong style="font-weight:700">${e.position||'—'}</strong>${e.field?`<br><span style="font-size:11px;color:var(--muted);font-weight:600">${e.field}</span>`:''}</td>
-        <td><div class="platform"><div class="platform-dot" style="background:${pc}"></div>${e.platform||'—'}</div></td>
-        <td style="font-weight:600">${e.company||'—'}</td>
-        <td style="color:var(--muted)">${date}</td>
-        <td><span class="status ${sc.cls}"><span class="status-dot" style="background:${sc.color}"></span>${sc.label}</span></td>
-        <td style="color:var(--muted)">${e.location||'—'}</td>
-        <td style="color:var(--muted);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${e.notes||''}">${e.notes||'—'}</td>
-        <td style="white-space:nowrap">
-          <button class="action-btn" onclick="editEntry('${e.id}')" title="Edit">✎</button>
-          <button class="action-btn del" onclick="deleteEntry('${e.id}')" title="Hapus">×</button>
-        </td>
-      </tr>`;
-    }).join('');
-  }
+function renderTable() {
+const q=document.getElementById('searchInput').value.toLowerCase();
+let filtered=entries.filter(e=>{
+const mf=activeFilter==='Semua'||e.platform===activeFilter;
+const ms=!q||(e.position||'').toLowerCase().includes(q)||(e.company||'').toLowerCase().includes(q);
+return mf&&ms;
+}).sort((a,b)=>new Date(b.date||0)-new Date(a.date||0));
+document.getElementById('tableCount').textContent=`${filtered.length} dari ${entries.length} lamaran`;
+const body=document.getElementById('tableBody');
+if(!filtered.length){
+body.innerHTML=`<tr><td colspan="8"><div class="empty-state">
+       <div class="empty-emoji">${entries.length?'🔍':'🌱'}</div>
+       <p>${entries.length?'Tidak ada hasil yang cocok.':'Belum ada lamaran nih!'}</p>
+       <span>${entries.length?'Coba ubah filter atau kata kunci.':'Klik "+ Tambah" untuk mulai track lamaranmu!'}</span>
+     </div></td></tr>`;
+return;
+}
+body.innerHTML=filtered.map(e=>{
+const sc=STATUS_CONFIG[e.status]||STATUS_CONFIG['Applied'];
+const pc=PLATFORM_COLORS[e.platform]||'#6B7280';
+const date=e.date?new Date(e.date).toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'}):'—';
+return `<tr>
+       <td><strong style="font-weight:700">${e.position||'—'}</strong>${e.field?`<br><span style="font-size:11px;color:var(--muted);font-weight:600">${e.field}</span>`:''}</td>
+       <td><div class="platform"><div class="platform-dot" style="background:${pc}"></div>${e.platform||'—'}</div></td>
+       <td style="font-weight:600">${e.company||'—'}</td>
+       <td style="color:var(--muted)">${date}</td>
+       <td><span class="status ${sc.cls}"><span class="status-dot" style="background:${sc.color}"></span>${sc.label}</span></td>
+       <td style="color:var(--muted)">${e.location||'—'}</td>
+       <td style="color:var(--muted);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${e.notes||''}">${e.notes||'—'}</td>
+       <td style="white-space:nowrap">
+         <button class="action-btn" onclick="editEntry('${e.id}')" title="Edit">✎</button>
+         <button class="action-btn del" onclick="deleteEntry('${e.id}')" title="Hapus">×</button>
+       </td>
+     </tr>`;
+}).join('');
+}
 
-  function openModal(id=null){
-    editingId=id;
-    document.getElementById('modalTitle').textContent=id?'Edit Lamaran':'Tambah Lamaran';
-    if(id){
-      const e=entries.find(x=>x.id===id);
-      document.getElementById('f-position').value=e.position||'';
-      document.getElementById('f-platform').value=e.platform||'';
-      document.getElementById('f-field').value=e.field||'';
-      document.getElementById('f-company').value=e.company||'';
-      document.getElementById('f-location').value=e.location||'';
-      document.getElementById('f-date').value=e.date||'';
-      document.getElementById('f-status').value=e.status||'Applied';
-      document.getElementById('f-notes').value=e.notes||'';
-    } else {
-      ['f-position','f-platform','f-field','f-company','f-location','f-notes'].forEach(id=>document.getElementById(id).value='');
-      document.getElementById('f-date').value=new Date().toISOString().split('T')[0];
-      document.getElementById('f-status').value='Applied';
-    }
-    document.getElementById('modalOverlay').classList.add('open');
-  }
+function openModal(id=null){
+editingId=id;
+document.getElementById('modalTitle').textContent=id?'Edit Lamaran':'Tambah Lamaran';
+if(id){
+const e=entries.find(x=>x.id===id);
+document.getElementById('f-position').value=e.position||'';
+document.getElementById('f-platform').value=e.platform||'';
+document.getElementById('f-field').value=e.field||'';
+document.getElementById('f-company').value=e.company||'';
+document.getElementById('f-location').value=e.location||'';
+document.getElementById('f-date').value=e.date||'';
+document.getElementById('f-status').value=e.status||'Applied';
+document.getElementById('f-notes').value=e.notes||'';
+} else {
+['f-position','f-platform','f-field','f-company','f-location','f-notes'].forEach(id=>document.getElementById(id).value='');
+document.getElementById('f-date').value=new Date().toISOString().split('T')[0];
+document.getElementById('f-status').value='Applied';
+}
+document.getElementById('modalOverlay').classList.add('open');
+}
 
-  function closeModal(){document.getElementById('modalOverlay').classList.remove('open');editingId=null;}
-  function closeModalOutside(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');editingId=null;}
+function closeModalOutside(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
 
-  function saveEntry(){
-    const position=document.getElementById('f-position').value.trim();
-    if(!position){alert('Posisi wajib diisi ya! 😊');return;}
-    const data={
-      id:editingId||Date.now().toString(),position,
-      platform:document.getElementById('f-platform').value,
-      field:document.getElementById('f-field').value,
-      company:document.getElementById('f-company').value.trim(),
-      location:document.getElementById('f-location').value.trim(),
-      date:document.getElementById('f-date').value,
-      status:document.getElementById('f-status').value,
-      notes:document.getElementById('f-notes').value.trim(),
-    };
-    if(editingId){entries=entries.map(e=>e.id===editingId?data:e);}
-    else{entries.push(data);}
-    save();closeModal();render();
-  }
+function saveEntry(){
+const position=document.getElementById('f-position').value.trim();
+if(!position){alert('Posisi wajib diisi ya! 😊');return;}
+const data={
+id:editingId||Date.now().toString(),position,
+platform:document.getElementById('f-platform').value,
+field:document.getElementById('f-field').value,
+company:document.getElementById('f-company').value.trim(),
+location:document.getElementById('f-location').value.trim(),
+date:document.getElementById('f-date').value,
+status:document.getElementById('f-status').value,
+notes:document.getElementById('f-notes').value.trim(),
+};
+if(editingId){entries=entries.map(e=>e.id===editingId?data:e);}
+else{entries.push(data);}
+save();closeModal();render();
+}
 
-  function editEntry(id){openModal(id);}
-  function deleteEntry(id){
-    if(!confirm('Hapus lamaran ini? 🗑️'))return;
-    entries=entries.filter(e=>e.id!==id);save();render();
-  }
+function editEntry(id){openModal(id);}
+function deleteEntry(id){
+if(!confirm('Hapus lamaran ini? 🗑️'))return;
+entries=entries.filter(e=>e.id!==id);save();render();
+}
 
-  function exportCSV(){
-    if(!entries.length){alert('Belum ada data untuk di-export! 📋');return;}
-    const headers=['Posisi','Platform','Bidang','Perusahaan','Lokasi','Tanggal','Status','Catatan'];
-    const rows=entries.map(e=>[e.position,e.platform,e.field,e.company,e.location,e.date,e.status,e.notes]
-      .map(v=>`"${(v||'').replace(/"/g,'""')}"`));
-    const a=document.createElement('a');
-    a.href=URL.createObjectURL(new Blob([[headers,...rows].map(r=>r.join(',')).join('\n')],{type:'text/csv;charset=utf-8;'}));
-    a.download='jobi-export.csv';a.click();
-  }
+function exportCSV(){
+if(!entries.length){alert('Belum ada data untuk di-export! 📋');return;}
+const headers=['Posisi','Platform','Bidang','Perusahaan','Lokasi','Tanggal','Status','Catatan'];
+const rows=entries.map(e=>[e.position,e.platform,e.field,e.company,e.location,e.date,e.status,e.notes]
+.map(v=>`"${(v||'').replace(/"/g,'""')}"`));
+const a=document.createElement('a');
+a.href=URL.createObjectURL(new Blob([[headers,...rows].map(r=>r.join(',')).join('\n')],{type:'text/csv;charset=utf-8;'}));
+a.download='jobi-export.csv';a.click();
+}
 
-  render();
+render();
 </script>
 </body>
 </html>
