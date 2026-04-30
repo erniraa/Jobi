@@ -319,10 +319,41 @@
   </div>
 
   <div class="toolbar">
-    <div class="filters" id="filterChips"></div>
-    <button class="btn" onclick="exportCSV()">⬇ Export CSV</button>
+  <div class="filters" style="gap:8px; flex-wrap:wrap">
+
+    <input class="chip" id="filterPosition" placeholder="Posisi..." oninput="render()" />
+
+    <select class="chip" id="filterPlatform" onchange="render()">
+      <option value="">Platform</option>
+      <option>LinkedIn</option>
+      <option>Jobstreet</option>
+      <option>Glints</option>
+      <option>Kalibrr</option>
+      <option>Indeed</option>
+      <option>Website Perusahaan</option>
+      <option>Referral</option>
+      <option>Lainnya</option>
+    </select>
+
+    <input class="chip" id="filterCompany" placeholder="Perusahaan..." oninput="render()" />
+
+    <input type="date" class="chip" id="filterDate" onchange="render()" />
+
+    <select class="chip" id="filterStatus" onchange="render()">
+      <option value="">Status</option>
+      <option value="Applied">Applied</option>
+      <option value="Interview">Interview</option>
+      <option value="Offering">Offering</option>
+      <option value="Ghosted">Ghosted</option>
+      <option value="Rejected">Rejected</option>
+    </select>
+
+    <input class="chip" id="filterLocation" placeholder="Lokasi..." oninput="render()" />
+
   </div>
 
+  <button class="btn" onclick="exportCSV()">⬇ Export CSV</button>
+</div>
   <div class="table-wrap">
     <table>
       <thead>
@@ -480,22 +511,51 @@
   }
 
   function renderTable() {
-    const q=document.getElementById('searchInput').value.toLowerCase();
-    let filtered=entries.filter(e=>{
-      const mf=activeFilter==='Semua'||e.platform===activeFilter;
-      const ms=!q||(e.position||'').toLowerCase().includes(q)||(e.company||'').toLowerCase().includes(q);
-      return mf&&ms;
-    }).sort((a,b)=>new Date(b.date||0)-new Date(a.date||0));
-    document.getElementById('tableCount').textContent=`${filtered.length} dari ${entries.length} lamaran`;
-    const body=document.getElementById('tableBody');
-    if(!filtered.length){
-      body.innerHTML=`<tr><td colspan="8"><div class="empty-state">
-        <div class="empty-emoji">${entries.length?'🔍':'🌱'}</div>
-        <p>${entries.length?'Tidak ada hasil yang cocok.':'Belum ada lamaran nih!'}</p>
-        <span>${entries.length?'Coba ubah filter atau kata kunci.':'Klik "+ Tambah" untuk mulai track lamaranmu!'}</span>
-      </div></td></tr>`;
-      return;
-    }
+  const q = document.getElementById('searchInput').value.toLowerCase();
+
+  const fPosition = document.getElementById('filterPosition')?.value.toLowerCase() || '';
+  const fPlatform = document.getElementById('filterPlatform')?.value || '';
+  const fCompany  = document.getElementById('filterCompany')?.value.toLowerCase() || '';
+  const fDate     = document.getElementById('filterDate')?.value || '';
+  const fStatus   = document.getElementById('filterStatus')?.value || '';
+  const fLocation = document.getElementById('filterLocation')?.value.toLowerCase() || '';
+
+  let filtered = entries.filter(e => {
+
+    const matchSearch =
+      !q ||
+      (e.position || '').toLowerCase().includes(q) ||
+      (e.company || '').toLowerCase().includes(q);
+
+    const matchPosition =
+      !fPosition || (e.position || '').toLowerCase().includes(fPosition);
+
+    const matchPlatform =
+      !fPlatform || e.platform === fPlatform;
+
+    const matchCompany =
+      !fCompany || (e.company || '').toLowerCase().includes(fCompany);
+
+    const matchDate =
+      !fDate || e.date === fDate;
+
+    const matchStatus =
+      !fStatus || e.status === fStatus;
+
+    const matchLocation =
+      !fLocation || (e.location || '').toLowerCase().includes(fLocation);
+
+    return (
+      matchSearch &&
+      matchPosition &&
+      matchPlatform &&
+      matchCompany &&
+      matchDate &&
+      matchStatus &&
+      matchLocation
+    );
+  })
+  .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
     body.innerHTML=filtered.map(e=>{
       const sc=STATUS_CONFIG[e.status]||STATUS_CONFIG['Applied'];
       const pc=PLATFORM_COLORS[e.platform]||'#6B7280';
