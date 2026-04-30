@@ -214,6 +214,7 @@
     .status-dot { width: 6px; height: 6px; border-radius: 50%; }
     .s-applied   { background: #E8F4FF; color: #1565C0; }
     .s-interview { background: #FFF8E7; color: #E65100; }
+    .s-psikotest { background: #FFF8E7; color: #E65100; }
     .s-offering  { background: #EEF6E4; color: var(--green4); }
     .s-ghosted   { background: #F3F4F6; color: #4B5563; }
     .s-rejected  { background: #FFF0EE; color: #C62828; }
@@ -390,6 +391,7 @@
         <select id="f-status">
           <option value="Applied">Applied</option>
           <option value="Interview">Interview</option>
+          <option value="Psikotest">Psikotest</option>
           <option value="Offering">Offering Letter</option>
           <option value="Ghosted">Ghosted</option>
           <option value="Rejected">Rejected</option>
@@ -421,6 +423,7 @@
   const STATUS_CONFIG = {
     'Applied':   { cls:'s-applied',   label:'Applied',         color:'#1565C0', bar:'#5BA4F5' },
     'Interview': { cls:'s-interview', label:'Interview',       color:'#E65100', bar:'#F5A623' },
+    'Psikotest': { cls:'s-psikotest', label:'psikotest',       color:'#E65100', bar:'#F5A623' },
     'Offering':  { cls:'s-offering',  label:'Offering Letter', color:'#2D6A4F', bar:'#6B8C52' },
     'Ghosted':   { cls:'s-ghosted',   label:'Ghosted',         color:'#4B5563', bar:'#B4B2A9' },
     'Rejected':  { cls:'s-rejected',  label:'Rejected',        color:'#C62828', bar:'#E07B6A' },
@@ -431,12 +434,13 @@
 
   function renderStats() {
     const total=entries.length, interview=entries.filter(e=>e.status==='Interview').length,
-          offering=entries.filter(e=>e.status==='Offering').length,
+          offering=entries.filter(e=>e.status==='Offering').length, psikotest=entries.filter(e=>e.status==='Psikotest').length
           ghosted=entries.filter(e=>e.status==='Ghosted').length,
           rate=total?Math.round(interview/total*100):0;
     document.getElementById('statsGrid').innerHTML = [
       {emoji:'📋',label:'Total Lamaran',value:total,sub:'semua platform'},
       {emoji:'🎯',label:'Interview',value:interview,sub:`${rate}% response rate`},
+      {emoji:'📝',label:'Psikotest',value:psikotest,sub:`${rate}% response rate`},
       {emoji:'🎉',label:'Offering',value:offering,sub:`dari ${total} lamaran`},
       {emoji:'👻',label:'Ghosted',value:ghosted,sub:`${total?Math.round(ghosted/total*100):0}% dari total`},
     ].map(d=>`<div class="stat-card">
@@ -474,7 +478,7 @@
     const box=document.getElementById('reminderBox');
     if(stale.length){
       document.getElementById('reminderText').textContent=
-        `${stale.length} lamaran belum ada update lebih dari 14 hari — coba follow up atau tandai sebagai Ghosted!`;
+        `${stale.length} lamaran belum ada update lebih dari 14 hari — yuk follow up atau tandai sebagai Ghosted 👻`;
       box.style.display='flex';
     } else { box.style.display='none'; }
   }
