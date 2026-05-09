@@ -181,7 +181,7 @@
     <div class="logo-icon">🌱</div>
     <div>
       <span class="logo">Jobi</span>
-      <span class="logo-tag">Track Your Dream Job!✨ </span>
+      <span class="logo-tag">track your dream job!</span>
     </div>
   </div>
   <div class="nav-right">
@@ -250,7 +250,7 @@
 
   <div class="bottom-bar">
     <span></span>
-    <span>✨ Data tersimpan otomatis di browser kamu </span>
+    <span>✨ Data tersimpan otomatis</span>
   </div>
 </main>
 
@@ -438,22 +438,33 @@
       `<div class="legend-item"><div class="legend-dot" style="background:${STATUS_CONFIG[s].bar}"></div>${STATUS_CONFIG[s].label} (${counts[s]})</div>`).join('');
   }
 
+  let filterOptions = { platform:[], status:[], lokasi:[], jenis:[] };
+
   function renderFilterPanels() {
-    const platforms = ['Semua',...new Set(entries.map(e=>e.platform).filter(Boolean))];
-    document.getElementById('filterPlatform').innerHTML = platforms.map(p=>
-      `<button class="chip ${activeFilters.platform===p?'active':''}" onclick="setFilter('platform',${JSON.stringify(p)})">${p}</button>`).join('');
-    const statuses = ['Semua',...Object.keys(STATUS_CONFIG)];
-    document.getElementById('filterStatus').innerHTML = statuses.map(s=>
-      `<button class="chip ${activeFilters.status===s?'active':''}" onclick="setFilter('status',${JSON.stringify(s)})">${s}</button>`).join('');
-    const lokasis = ['Semua',...new Set(entries.map(e=>e.location).filter(Boolean))];
-    document.getElementById('filterLokasi').innerHTML = lokasis.map(l=>
-      `<button class="chip ${activeFilters.lokasi===l?'active':''}" onclick="setFilter('lokasi',${JSON.stringify(l)})">${l}</button>`).join('');
-    const jeniss = ['Semua',...new Set(entries.map(e=>e.jobtype).filter(Boolean))];
-    document.getElementById('filterJenis').innerHTML = jeniss.map(j=>
-      `<button class="chip ${activeFilters.jenis===j?'active':''}" onclick="setFilter('jenis',${JSON.stringify(j)})">${j}</button>`).join('');
+    filterOptions.platform = ['Semua',...new Set(entries.map(e=>e.platform).filter(Boolean))];
+    filterOptions.status   = ['Semua',...Object.keys(STATUS_CONFIG)];
+    filterOptions.lokasi   = ['Semua',...new Set(entries.map(e=>e.location).filter(Boolean))];
+    filterOptions.jenis    = ['Semua',...new Set(entries.map(e=>e.jobtype).filter(Boolean))];
+
+    const renderChips = (containerId, dim) => {
+      document.getElementById(containerId).innerHTML = filterOptions[dim].map((val, i) =>
+        `<button class="chip ${activeFilters[dim]===val?'active':''}" data-dim="${dim}" data-idx="${i}">${val}</button>`
+      ).join('');
+    };
+    renderChips('filterPlatform', 'platform');
+    renderChips('filterStatus',   'status');
+    renderChips('filterLokasi',   'lokasi');
+    renderChips('filterJenis',    'jenis');
   }
 
-  function setFilter(dim, val) { activeFilters[dim]=val; render(); }
+  document.addEventListener('click', function(e) {
+    const btn = e.target.closest('button[data-dim]');
+    if (!btn) return;
+    const dim = btn.dataset.dim;
+    const idx = parseInt(btn.dataset.idx);
+    activeFilters[dim] = filterOptions[dim][idx];
+    render();
+  });
 
   function renderReminder() {
     const now=Date.now();
